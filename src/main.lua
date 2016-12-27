@@ -1,9 +1,12 @@
 debug = true
-state = { game = require("states/game")}
-
+vectorModule = require("utils/vector")
+state = {current = {}}
+imageAssets = {}
 function love.load(arg)
-    state:switch("game")
-    state.current.load()    
+    --Add states
+    state.game = require("states/game")
+    state.splash = require("states/splash")
+    state:switch("splash")   
 end
 
 function love.update(dt)

@@ -9,13 +9,13 @@ function game.load()
     rightBound = leftBound + grid.width*bubbleDiameter
 
     --Image loading
-    redBubbleImage = love.graphics.newImage('images/redbubble.png')
+    redBubbleImage = imageAssets["redBubble"]
 
     --Ship stuff
     ship = shipModule:new({
         x = (rightBound - leftBound)/2,
         y = game.height-40,
-        image = love.graphics.newImage('images/bubble_spaceship.png'),
+        image = imageAssets["redShip"],
         bubble = nil
     })
     
@@ -27,21 +27,14 @@ function game.update(dt)
         love.event.quit(0)
     end
 
-    if love.keyboard.isDown('a') then
-        ship.x = ship.x - 100*dt
-    elseif love.keyboard.isDown('d') then
-        ship.x = ship.x + 100*dt
-    end
+    ship:update(dt)
 
 
 
 end
 
 function game.draw(dt)
-    love.graphics.draw(ship.image, ship.x, ship.y)
-    if ship.bubble ~= nil then
-        love.graphics.draw(ship.bubble.image, ship.bubble.x, ship.bubble.y)
-    end
+    ship:draw(dt)
     --Lines
     love.graphics.line(leftBound,0,leftBound,game.height)
     love.graphics.line(rightBound,0,rightBound,game.height)
@@ -49,7 +42,7 @@ end
 
 function game.mousepressed(x,y,button,istouch)
     if button == 1 then
-        ship:shoot()
+        ship:shoot({x = x, y = y})
     elseif button == 2 then
         state:switch("game")
     end
