@@ -13,13 +13,28 @@ function bubble.new(args)
     self.y = args.y
     self.image = args.image
     self.velocity = (args.velocity and args.velocity or vectorModule(0,0))
+    self.adjustedRightBound = rightBound - bubbleDiameter
     return self
 end
 
 function bubble:update(dt)
-    self.x = self.x + self.velocity.x*dt
+    self:move(dt)
+end
+
+function bubble:move(dt)
     self.y = self.y + self.velocity.y*dt
-    
+    local nextX = self.x + self.velocity.x*dt
+    if self.adjustedRightBound <= nextX then
+        local remainder = nextX - self.adjustedRightBound
+        self.x = self.adjustedRightBound - remainder        
+        self.velocity.x = -self.velocity.x
+    elseif nextX <= leftBound then
+        local remainder = leftBound - nextX
+        self.x = leftBound + remainder
+        self.velocity.x = -self.velocity.x
+    else
+        self.x = nextX
+    end
 end
 
 return bubble
