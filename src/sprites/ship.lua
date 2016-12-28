@@ -1,9 +1,17 @@
 local ship = {x = 0, y = 0, image = nil, bubble = nil}
-function ship:new(args)
+ship.__index = ship
+
+setmetatable(ship, {
+  __call = function (cls, ...)
+    return cls.new(...)
+  end,
+})
+
+function ship.new(args)
+    local self = setmetatable({}, ship)
     self.x = args.x
     self.y = args.y
     self.image = args.image
-    self.bubble = args.bubble
     return self
 end
 
@@ -21,7 +29,7 @@ function ship:shoot(mouse)
         x = center.x - bubbleDiameter/2,
         y = center.y - bubbleDiameter/2,
         image = redBubbleImage,
-        velocity = velocity
+        velocity = velocity:setScale(shootingSpeed)
     })
 end
 

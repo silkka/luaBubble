@@ -12,11 +12,10 @@ function game.load()
     redBubbleImage = imageAssets["redBubble"]
 
     --Ship stuff
-    ship = shipModule:new({
+    ship = shipModule({
         x = (rightBound - leftBound)/2,
         y = game.height-40,
         image = imageAssets["redShip"],
-        bubble = nil
     })
     
 end
@@ -44,7 +43,7 @@ function game.mousepressed(x,y,button,istouch)
     if button == 1 then
         ship:shoot({x = x, y = y})
     elseif button == 2 then
-        state:switch("game")
+        --state:switch("game")
     end
 end
 

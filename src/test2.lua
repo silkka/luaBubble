@@ -1,13 +1,5 @@
-test = require("test")
+test = require("utils/vector")
 
-asd = test.new(1)
-asd2 = test.new(2)
+vec = test(1,2)
 
-print (asd.value)
-print (asd2.value)
-
-asd:setValue(12)
-asd2:setValue(33)
-
-print (asd.value)
-print (asd2.value)
+print(5*vec.y)

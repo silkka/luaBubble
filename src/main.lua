@@ -3,6 +3,7 @@ vectorModule = require("utils/vector")
 state = {current = {}}
 imageAssets = {}
 function love.load(arg)
+
     --Add states
     state.game = require("states/game")
     state.splash = require("states/splash")
