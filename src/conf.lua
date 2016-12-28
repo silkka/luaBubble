@@ -41,4 +41,6 @@ function love.conf(t)
     t.modules.thread = true             -- Enable the thread module (boolean)
 
     shootingSpeed = 500
+    bubbleColors = {'red','blue','yellow','green','purple'}
+    numberOfColors = 1
 end

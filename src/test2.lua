@@ -1,5 +1,4 @@
-test = require("utils/vector")
-
-vec = test(1,2)
-
-print(5*vec.y)
+asd = {{1,2,3},{1,2,6},{1,2,3},{1,2,3}}
+for var = 1, 5, 1 do 
+    print(var)
+end

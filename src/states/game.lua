@@ -2,6 +2,7 @@ local game = {}
 function game.load()
     shipModule = require("sprites/ship")
     bubbleModule = require("sprites/bubble")
+    gridModule = require("sprites/grid")
     game.width, game.height, game.flags = love.window.getMode()
     grid = {width = 12}
     bubbleDiameter = 32
@@ -16,6 +17,11 @@ function game.load()
         x = (rightBound - leftBound)/2,
         y = game.height-40,
         image = imageAssets["redShip"],
+    })
+
+    grid = gridModule({
+        x = leftBound,
+        y = 0,
     })
     
 end
@@ -34,6 +40,7 @@ end
 
 function game.draw(dt)
     ship:draw(dt)
+    grid:draw(dt)
     --Lines
     love.graphics.line(leftBound,0,leftBound,game.height)
     love.graphics.line(rightBound,0,rightBound,game.height)
